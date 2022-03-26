@@ -2,7 +2,9 @@
     <string name="app_name">InSOrma</string>
 
     <string name="email_placeholder">Your email address</string>
-    <string name="password_placeholder">Your password address</string>
+    <string name="password_placeholder">Your password</string>
+    <string name="username_placeholder">Your username</string>
+    <string name="phone_placeholder">Your phone number</string>
 
     <string name="login_btn">Login</string>
     <string name="new_account_btn">Create a new account</string>
