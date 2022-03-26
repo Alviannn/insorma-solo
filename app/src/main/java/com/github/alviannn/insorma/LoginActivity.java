@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         emailField = findViewById(R.id.email_address);
         passwordField = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_btn);
-        createAccountBtn = findViewById(R.id.new_account_btn);
+        createAccountBtn = findViewById(R.id.create_account_btn);
 
         loginBtn.setOnClickListener(this);
         createAccountBtn.setOnClickListener(this);
