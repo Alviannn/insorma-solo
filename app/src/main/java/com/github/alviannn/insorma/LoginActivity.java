@@ -1,6 +1,8 @@
 package com.github.alviannn.insorma;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.github.alviannn.insorma.models.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.github.alviannn.insorma.shared.SharedData;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private final List<User> registeredUsers = new ArrayList<>();
 
     private EditText emailField, passwordField;
     private Button loginBtn, createAccountBtn;
@@ -41,11 +39,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Nullable
     private User findUser(String email, String password) {
-        for (User user : registeredUsers) {
+        for (User user : SharedData.REGISTERED_USERS) {
             boolean sameEmail = user.getEmail().equals(email);
-            boolean samePassword = user.getPassword().equals(password);
 
-            if (sameEmail && samePassword) {
+            if (sameEmail) {
                 return user;
             }
         }
@@ -64,10 +61,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (foundUser.getPassword().equals(password)) {
+                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            // TODO: switch to home page
+            Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
         } else if (view == createAccountBtn) {
-            // TODO: switch to register page
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
         }
     }
 
