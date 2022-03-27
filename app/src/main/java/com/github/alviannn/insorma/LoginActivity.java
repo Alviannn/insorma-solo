@@ -55,13 +55,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String email = emailField.getText().toString();
             String password = passwordField.getText().toString();
 
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+
             User foundUser = this.findUser(email, password);
             if (foundUser == null) {
                 Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (foundUser.getPassword().equals(password)) {
-                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
+                        .show();
                 return;
             }
 
