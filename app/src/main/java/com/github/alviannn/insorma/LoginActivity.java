@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Nullable
-    private User findUser(String email, String password) {
-        for (User user : SharedData.REGISTERED_USERS) {
+    private User findUser(String email) {
+        for (User user : SharedData.USER_LIST) {
             boolean sameEmail = user.getEmail().equals(email);
 
             if (sameEmail) {
@@ -61,18 +61,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return;
             }
 
-            User foundUser = this.findUser(email, password);
+            User foundUser = this.findUser(email);
             if (foundUser == null) {
                 Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (foundUser.getPassword().equals(password)) {
+            if (!foundUser.getPassword().equals(password)) {
                 Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
                         .show();
                 return;
             }
 
             Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         } else if (view == createAccountBtn) {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
