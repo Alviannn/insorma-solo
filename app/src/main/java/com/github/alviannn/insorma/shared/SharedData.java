@@ -1,5 +1,6 @@
 package com.github.alviannn.insorma.shared;
 
+import com.github.alviannn.insorma.R;
 import com.github.alviannn.insorma.models.Product;
 import com.github.alviannn.insorma.models.User;
 
@@ -15,10 +16,10 @@ public class SharedData {
     static {
         USER_LIST.add(new User("alviandq@example.com", "alviandq", "081234567890", "alvian123"));
 
-        PRODUCT_LIST.add(new Product("Light Grey Chair", 100, 4.9));
-        PRODUCT_LIST.add(new Product("White Classy Chair", 90, 4.4));
-        PRODUCT_LIST.add(new Product("BAGGEBO", 59, 4.5));
-        PRODUCT_LIST.add(new Product("SUNDVIK", 249, 4.0));
+        PRODUCT_LIST.add(new Product(R.mipmap.light_grey_chair, "Light Grey Chair", 100, 4.9));
+        PRODUCT_LIST.add(new Product(R.mipmap.white_classy_chair, "White Classy Chair", 90, 4.4));
+        PRODUCT_LIST.add(new Product(R.mipmap.baggebo, "BAGGEBO", 59, 4.5));
+        PRODUCT_LIST.add(new Product(R.mipmap.sundvik, "SUNDVIK", 249, 4.0));
     }
 
 }

@@ -39,6 +39,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = productList.get(position);
 
+        holder.productImage.setImageResource(product.getImageId());
         holder.productName.setText(product.getName());
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setText("Rating: " + product.getRating() + " / 5.0");
