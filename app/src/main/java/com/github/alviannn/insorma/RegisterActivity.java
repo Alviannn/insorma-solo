@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             boolean usernameValid = username.matches("^.{3,20}$");
             boolean passwordValid = password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).+${8,}");
 
-            List<User> users = SharedData.REGISTERED_USERS;
+            List<User> users = SharedData.USER_LIST;
 
             if (email.isEmpty() || username.isEmpty() || phone.isEmpty() || password.isEmpty()) {
                 errorMessage = "All fields must be filled";
