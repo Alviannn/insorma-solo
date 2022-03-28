@@ -15,4 +15,11 @@
 
     <string name="product_detail_btn">Open details</string>
     <string name="no_products">No products found</string>
+    <string name="buy_btn">Buy furniture</string>
+    <string name="product_quantity_field">How much do you want to buy?</string>
+
+    <string name="product_price_hint">PRODUCT_PRICE</string>
+    <string name="product_rating_hint">PRODUCT_RATING</string>
+    <string name="product_name_hint">PRODUCT_NAME</string>
+    <string name="product_total_price_hint">TOTAL_PRICE</string>
 </resources>
