@@ -64,7 +64,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         String rawText = productQuantity.getText().toString();
         try {
             int quantity = Integer.parseInt(rawText);
-            int totalPrice = quantity + product.getPrice();
+            int totalPrice = quantity * product.getPrice();
 
             if (quantity < 1) {
                 productTotalPrice.setTextColor(this.getColor(R.color.danger));
