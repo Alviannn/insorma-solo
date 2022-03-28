@@ -9,6 +9,8 @@ import java.util.List;
 
 public class SharedData {
 
+    public final static String PRODUCT_POSITION_KEY = "PRODUCT_POSITION";
+
     public final static List<User> USER_LIST = new ArrayList<>();
     public final static List<Product> PRODUCT_LIST = new ArrayList<>();
     public static User CURRENT_USER = null;

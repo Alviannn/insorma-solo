@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView productsRecycler = findViewById(R.id.recycler_products);
         TextView noProductsText = findViewById(R.id.no_product_text);
 
-        ProductItemAdapter adapter = new ProductItemAdapter(productList);
+        ProductItemAdapter adapter = new ProductItemAdapter(productList, this);
 
         productsRecycler.setAdapter(adapter);
         productsRecycler.setLayoutManager(new LinearLayoutManager(this));

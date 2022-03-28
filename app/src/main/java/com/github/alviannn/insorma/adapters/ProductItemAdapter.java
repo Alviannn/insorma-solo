@@ -1,7 +1,8 @@
 package com.github.alviannn.insorma.adapters;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.alviannn.insorma.ProductDetailActivity;
 import com.github.alviannn.insorma.R;
 import com.github.alviannn.insorma.models.Product;
+import com.github.alviannn.insorma.shared.SharedData;
 
 import java.util.List;
 
 public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.ViewHolder> {
 
     private final List<Product> productList;
+    private final Context homeContext;
 
-    public ProductItemAdapter(List<Product> productList) {
+    public ProductItemAdapter(List<Product> productList, Context homeContext) {
         this.productList = productList;
+        this.homeContext = homeContext;
     }
 
     @NonNull
@@ -44,7 +49,10 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setText("Rating: " + product.getRating() + " / 5.0");
         holder.productDetailBtn.setOnClickListener(view -> {
-            Log.d("MY DEBUG", "Click on product " + position);
+            Intent intent = new Intent(homeContext, ProductDetailActivity.class);
+            intent.putExtra(SharedData.PRODUCT_POSITION_KEY, position);
+
+            homeContext.startActivity(intent);
         });
     }
 
