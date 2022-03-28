@@ -116,7 +116,7 @@
             android:hint="@string/product_quantity_field"
             android:padding="9dp"
             android:textSize="14sp"
-            android:inputType="numberSigned"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.394"
             app:layout_constraintStart_toEndOf="@+id/textView3"

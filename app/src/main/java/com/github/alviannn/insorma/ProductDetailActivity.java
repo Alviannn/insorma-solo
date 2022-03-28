@@ -52,8 +52,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         productRating.setText("Rating: " + product.getRating() + " / 5.0");
         productPrice.setText("$" + product.getPrice());
 
-        productQuantity.setText("0");
-        productTotalPrice.setText("$0");
+        productQuantity.setText("1");
+        this.updateTotalPrice();
 
         productQuantity.addTextChangedListener(this);
         buyBtn.setOnClickListener(this);
@@ -66,8 +66,13 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             int quantity = Integer.parseInt(rawText);
             int totalPrice = quantity + product.getPrice();
 
-            productTotalPrice.setTextColor(this.getColor(R.color.primary));
-            productTotalPrice.setText("$" + totalPrice);
+            if (quantity < 1) {
+                productTotalPrice.setTextColor(this.getColor(R.color.danger));
+                productTotalPrice.setText("Invalid total price");
+            } else {
+                productTotalPrice.setTextColor(this.getColor(R.color.primary));
+                productTotalPrice.setText("$" + totalPrice);
+            }
         } catch (NumberFormatException e) {
             productTotalPrice.setTextColor(this.getColor(R.color.danger));
             productTotalPrice.setText("Invalid total price");
