@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+            SharedData.CURRENT_USER = foundUser;
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);

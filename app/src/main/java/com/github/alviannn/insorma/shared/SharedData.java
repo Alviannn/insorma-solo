@@ -11,6 +11,7 @@ public class SharedData {
 
     public final static List<User> USER_LIST = new ArrayList<>();
     public final static List<Product> PRODUCT_LIST = new ArrayList<>();
+    public static User CURRENT_USER = null;
 
     // data seeding
     static {

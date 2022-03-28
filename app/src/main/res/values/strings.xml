@@ -14,4 +14,5 @@
     <string name="menu_profile_item">Profile</string>
 
     <string name="product_detail_btn">Open details</string>
+    <string name="no_products">No products found</string>
 </resources>
