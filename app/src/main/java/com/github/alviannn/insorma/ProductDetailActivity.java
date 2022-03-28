@@ -14,7 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.alviannn.insorma.models.Product;
+import com.github.alviannn.insorma.models.Transaction;
+import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
+
+import java.util.Date;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
@@ -59,33 +63,50 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         buyBtn.setOnClickListener(this);
     }
 
-    @SuppressLint("SetTextI18n")
-    private void updateTotalPrice() {
+    private int getProductQuantity() {
         String rawText = productQuantity.getText().toString();
         try {
-            int quantity = Integer.parseInt(rawText);
-            int totalPrice = quantity * product.getPrice();
+            return Integer.parseInt(rawText);
+        } catch (NumberFormatException ignored) {
+        }
 
-            if (quantity < 1) {
-                productTotalPrice.setTextColor(this.getColor(R.color.danger));
-                productTotalPrice.setText("Invalid total price");
-            } else {
-                productTotalPrice.setTextColor(this.getColor(R.color.primary));
-                productTotalPrice.setText("$" + totalPrice);
-            }
-        } catch (NumberFormatException e) {
+        return -1;
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void updateTotalPrice() {
+        int quantity = this.getProductQuantity();
+
+        if (quantity < 1) {
             productTotalPrice.setTextColor(this.getColor(R.color.danger));
             productTotalPrice.setText("Invalid total price");
+        } else {
+            int totalPrice = quantity * product.getPrice();
+
+            productTotalPrice.setTextColor(this.getColor(R.color.primary));
+            productTotalPrice.setText("$" + totalPrice);
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View view) {
         if (view != buyBtn) {
             return;
         }
 
-        Toast.makeText(this, "Product is bought", Toast.LENGTH_SHORT).show();
+        User user = SharedData.CURRENT_USER;
+        int quantity = this.getProductQuantity();
+
+        if (quantity < 1) {
+            Toast.makeText(this, "Invalid quantity", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        user.getTransactions().add(new Transaction(product, quantity, new Date()));
+        Toast.makeText(this, "Successfully bought product", Toast.LENGTH_SHORT).show();
+
+        this.finish();
     }
 
     @Override
