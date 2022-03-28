@@ -52,28 +52,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == loginBtn) {
-            String email = emailField.getText().toString();
-            String password = passwordField.getText().toString();
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-
-            User foundUser = this.findUser(email);
-            if (foundUser == null) {
-                Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (!foundUser.getPassword().equals(password)) {
-                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-
+//            String email = emailField.getText().toString();
+//            String password = passwordField.getText().toString();
+//
+//            if (email.isEmpty() || password.isEmpty()) {
+//                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT)
+//                        .show();
+//                return;
+//            }
+//
+//            User foundUser = this.findUser(email);
+//            if (foundUser == null) {
+//                Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if (!foundUser.getPassword().equals(password)) {
+//                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
+//                        .show();
+//                return;
+//            }
+//
+//            SharedData.CURRENT_USER = foundUser;
             Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-            SharedData.CURRENT_USER = foundUser;
+
+            SharedData.CURRENT_USER = SharedData.USER_LIST.get(0);
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
