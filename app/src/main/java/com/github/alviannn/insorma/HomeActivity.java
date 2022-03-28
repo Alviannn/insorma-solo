@@ -1,14 +1,18 @@
 package com.github.alviannn.insorma;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.alviannn.insorma.adapters.ProductItemAdapter;
 import com.github.alviannn.insorma.models.Product;
@@ -53,4 +57,21 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home_item:
+                Toast.makeText(this, "Home page, it is", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.trasaction_item:
+                Toast.makeText(this, "Transaction page, it is", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.profile_item:
+                Toast.makeText(this, "Profile page, it is", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
