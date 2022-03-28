@@ -64,11 +64,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView productImage;
-
-        private final TextView productName;
-        private final TextView productRating;
-        private final TextView productPrice;
-
+        private final TextView productName, productRating, productPrice;
         private final TextView productDetailBtn;
 
         public ViewHolder(@NonNull View itemView) {
