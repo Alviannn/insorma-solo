@@ -29,4 +29,5 @@ public class Product {
     public double getRating() {
         return rating;
     }
+
 }
