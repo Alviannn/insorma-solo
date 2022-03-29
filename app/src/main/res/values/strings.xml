@@ -13,8 +13,9 @@
     <string name="menu_transaction_item">Transaction</string>
     <string name="menu_profile_item">Profile</string>
 
-    <string name="product_detail_btn">Open details</string>
+    <string name="no_transactions">No transactions history found</string>
     <string name="no_products">No products found</string>
+    <string name="product_detail_btn">Open details</string>
     <string name="buy_btn">Buy furniture</string>
     <string name="product_quantity_field">Product quantity</string>
 
@@ -22,4 +23,7 @@
     <string name="product_rating_hint">PRODUCT_RATING</string>
     <string name="product_name_hint">PRODUCT_NAME</string>
     <string name="product_total_price_hint">TOTAL_PRICE</string>
+    <string name="product_quantity_hint">PRODUCT_QUANTITY</string>
+    <string name="product_purchase_date_hint">PURCHASE_DATE</string>
+
 </resources>
