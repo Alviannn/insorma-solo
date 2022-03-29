@@ -22,11 +22,11 @@ import java.util.List;
 public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.ViewHolder> {
 
     private final List<Product> productList;
-    private final Context homeContext;
+    private final Context context;
 
-    public ProductItemAdapter(List<Product> productList, Context homeContext) {
+    public ProductItemAdapter(List<Product> productList, Context context) {
         this.productList = productList;
-        this.homeContext = homeContext;
+        this.context = context;
     }
 
     @NonNull
@@ -49,10 +49,10 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setText("Rating: " + product.getRating() + " / 5.0");
         holder.productDetailBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(homeContext, ProductDetailActivity.class);
+            Intent intent = new Intent(context, ProductDetailActivity.class);
             intent.putExtra(SharedData.PRODUCT_POSITION_KEY, position);
 
-            homeContext.startActivity(intent);
+            context.startActivity(intent);
         });
     }
 
