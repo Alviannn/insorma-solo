@@ -10,7 +10,7 @@
     <string name="new_account_btn">Create a new account</string>
 
     <string name="menu_home_item">Home</string>
-    <string name="menu_transaction_item">Transaction</string>
+    <string name="menu_transaction_item">Transaction History</string>
     <string name="menu_profile_item">Profile</string>
 
     <string name="no_transactions">No transactions history found</string>

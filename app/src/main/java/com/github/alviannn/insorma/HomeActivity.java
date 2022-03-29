@@ -62,12 +62,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        // TODO: add current activity check
 
         switch (item.getItemId()) {
             case R.id.home_item:
                 return true;
-            case R.id.trasaction_item:
+            case R.id.transaction_item:
                 intent = new Intent(this, TransactionHistoryActivity.class);
                 startActivity(intent);
                 return true;
