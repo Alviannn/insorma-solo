@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.alviannn.insorma.abstracts.AbstractMenuActivity;
 import com.github.alviannn.insorma.adapters.TransactionHistoryItemAdapter;
 import com.github.alviannn.insorma.models.Transaction;
 import com.github.alviannn.insorma.models.User;
@@ -15,7 +15,7 @@ import com.github.alviannn.insorma.shared.SharedData;
 
 import java.util.List;
 
-public class TransactionHistoryActivity extends AbstractMenuActivity {
+public class TransactionHistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
