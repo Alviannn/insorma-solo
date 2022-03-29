@@ -17,18 +17,16 @@ import com.github.alviannn.insorma.models.Transaction;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TransactionHistoryItemAdapter extends RecyclerView.Adapter<TransactionHistoryItemAdapter.ViewHolder> {
 
     private final List<Transaction> transactionList;
-    private final Context context;
-
     private final DateFormat dateFormat;
 
-    public TransactionHistoryItemAdapter(List<Transaction> transactionList, Context context) {
+    public TransactionHistoryItemAdapter(List<Transaction> transactionList) {
         this.transactionList = transactionList;
-        this.context = context;
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
     }
 
     @NonNull

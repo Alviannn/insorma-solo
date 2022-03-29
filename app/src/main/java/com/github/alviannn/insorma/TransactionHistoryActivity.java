@@ -28,7 +28,7 @@ public class TransactionHistoryActivity extends AbstractMenuActivity {
         RecyclerView transactionsRecycler = findViewById(R.id.recycler_transactions);
         TextView noTransactionsText = findViewById(R.id.no_transactions_text);
 
-        TransactionHistoryItemAdapter adapter = new TransactionHistoryItemAdapter(transactions, this);
+        TransactionHistoryItemAdapter adapter = new TransactionHistoryItemAdapter(transactions);
 
         transactionsRecycler.setAdapter(adapter);
         transactionsRecycler.setLayoutManager(new LinearLayoutManager(this));
