@@ -4,15 +4,26 @@ import java.util.Date;
 
 public class Transaction {
 
-    private final Product product;
+    /**
+     * Tracker for the transaction ID,
+     * it starts at {@code 1} and it will increment automatically as the object gets instantiated.
+     */
+    private static int GENERATED_ID = 0;
 
+    private final int id;
+    private final Product product;
     private final int quantity;
     private final Date transactionDate;
 
     public Transaction(Product product, int quantity, Date transactionDate) {
+        this.id = ++GENERATED_ID;
         this.product = product;
         this.quantity = quantity;
         this.transactionDate = transactionDate;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Product getProduct() {

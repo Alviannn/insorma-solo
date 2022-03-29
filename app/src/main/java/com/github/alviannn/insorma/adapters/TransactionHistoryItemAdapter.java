@@ -45,7 +45,7 @@ public class TransactionHistoryItemAdapter extends RecyclerView.Adapter<Transact
         Transaction transaction = transactionList.get(position);
         Product product = transaction.getProduct();
 
-        holder.transactionId.setText("ID: " + 1);
+        holder.transactionId.setText("ID: " + transaction.getId());
         holder.productName.setText("Name: " + product.getName());
         holder.productQuantity.setText("Quantity: " + transaction.getQuantity());
         holder.productTotalPrice.setText("Total price: $" + transaction.getTotalPrice());
