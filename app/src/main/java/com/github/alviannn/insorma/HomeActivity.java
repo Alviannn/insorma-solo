@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        User user = SharedData.CURRENT_USER;
-        this.setTitle("Welcome, " + user.getUsername());
 
         List<Product> productList = SharedData.PRODUCT_LIST;
         RecyclerView productsRecycler = findViewById(R.id.recycler_products);
@@ -77,6 +73,19 @@ public class HomeActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        User user = SharedData.CURRENT_USER;
+        if (user == null) {
+            this.finish();
+            return;
+        }
+
+        this.setTitle("Welcome, " + user.getUsername());
     }
 
 }

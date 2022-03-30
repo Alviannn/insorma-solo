@@ -7,11 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
