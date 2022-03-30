@@ -12,10 +12,12 @@ import java.util.List;
 public class SharedData {
 
     public final static String PRODUCT_POSITION_KEY = "PRODUCT_POSITION";
+    public final static String CURRENT_USERNAME_KEY = "CURRENT_USERNAME";
+
+    public final static int USER_CHANGE_CODE = 1;
 
     public final static List<User> USER_LIST = new ArrayList<>();
     public final static List<Product> PRODUCT_LIST = new ArrayList<>();
-    public static User CURRENT_USER = null;
 
     // data seeding
     static {
@@ -33,7 +35,7 @@ public class SharedData {
      * @return a null if not exists, otherwise will be the user if they are registered
      */
     @Nullable
-    public static User doesUserExists(String username, String email) {
+    public static User findUser(String username, String email) {
         for (User user : USER_LIST) {
             boolean sameUsername = user.getUsername().equals(username);
             boolean sameEmail = user.getEmail().equals(email);

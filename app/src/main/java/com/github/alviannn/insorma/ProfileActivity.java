@@ -2,6 +2,7 @@ package com.github.alviannn.insorma;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private User currentUser;
 
     private TextView username;
     private Button editProfileBtn, saveBtn, logoutBtn, deleteAccountBtn;
@@ -34,11 +37,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         logoutBtn = findViewById(R.id.logout_btn);
         deleteAccountBtn = findViewById(R.id.delete_account_btn);
 
-        User user = SharedData.CURRENT_USER;
+        String currentUsername = this.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
+        currentUser = SharedData.findUser(currentUsername, null);
+        assert currentUser != null;
 
-        email.setText(user.getEmail());
-        username.setText(user.getUsername());
-        phone.setText(user.getPhone());
+        email.setText(currentUser.getEmail());
+        username.setText(currentUser.getUsername());
+        phone.setText(currentUser.getPhone());
 
         editProfileBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
@@ -48,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        User user = SharedData.CURRENT_USER;
+        Intent intent = this.getIntent();
 
         if (view == editProfileBtn) {
             editProfileBtn.setVisibility(View.GONE);
@@ -57,12 +62,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             saveBtn.setVisibility(View.VISIBLE);
             usernameEdit.setVisibility(View.VISIBLE);
 
-            usernameEdit.setText(user.getUsername());
+            usernameEdit.setText(currentUser.getUsername());
         } else if (view == saveBtn) {
             String newUsername = usernameEdit.getText().toString();
 
-            User foundUser = SharedData.doesUserExists(newUsername, null);
-            if (foundUser != null && foundUser != user) {
+            User foundUser = SharedData.findUser(newUsername, null);
+            if (foundUser != null && foundUser != currentUser) {
                 Toast.makeText(
                         this,
                         "This username is already being used",
@@ -71,9 +76,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 return;
             }
 
-            user.setUsername(newUsername);
+            currentUser.setUsername(newUsername);
             usernameEdit.setText("");
             username.setText(newUsername);
+
+            intent.putExtra(SharedData.CURRENT_USERNAME_KEY, newUsername);
+            this.setResult(SharedData.USER_CHANGE_CODE, intent);
 
             editProfileBtn.setVisibility(View.VISIBLE);
             username.setVisibility(View.VISIBLE);
@@ -81,12 +89,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             saveBtn.setVisibility(View.GONE);
             usernameEdit.setVisibility(View.GONE);
         } else if (view == logoutBtn) {
-            SharedData.CURRENT_USER = null;
+            intent.removeExtra(SharedData.CURRENT_USERNAME_KEY);
+
+            this.setResult(SharedData.USER_CHANGE_CODE, intent);
             this.finish();
         } else if (view == deleteAccountBtn) {
-            SharedData.USER_LIST.remove(user);
-            SharedData.CURRENT_USER = null;
+            SharedData.USER_LIST.remove(currentUser);
 
+            intent.removeExtra(SharedData.CURRENT_USERNAME_KEY);
+
+            this.setResult(SharedData.USER_CHANGE_CODE, intent);
             this.finish();
         }
     }

@@ -8,15 +8,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.alviannn.insorma.adapters.ProductItemAdapter;
 import com.github.alviannn.insorma.models.Product;
-import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        String username = this.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
+        this.setTitle("Welcome, " + username);
 
         List<Product> productList = SharedData.PRODUCT_LIST;
         RecyclerView productsRecycler = findViewById(R.id.recycler_products);
@@ -57,35 +61,34 @@ public class HomeActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
+        Intent intent = null;
 
         switch (item.getItemId()) {
             case R.id.home_item:
                 return true;
             case R.id.transaction_item:
                 intent = new Intent(this, TransactionHistoryActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.profile_item:
                 intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+
+        if (intent != null) {
+            String username = this.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
+
+            intent.putExtra(SharedData.CURRENT_USERNAME_KEY, username);
+            this.startActivity(intent);
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        User user = SharedData.CURRENT_USER;
-        if (user == null) {
-            this.finish();
-            return;
-        }
-
-        this.setTitle("Welcome, " + user.getUsername());
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Toast.makeText(this, resultCode, Toast.LENGTH_SHORT).show();
+        super.onActivityResult(requestCode, resultCode, data);
     }
-
 }

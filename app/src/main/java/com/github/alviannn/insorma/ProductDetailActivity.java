@@ -28,6 +28,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private TextView productTotalPrice;
     private Button buyBtn;
 
+    private User currentUser;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             finish();
             return;
         }
+
+        String username = this.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
+        currentUser = SharedData.findUser(username, null);
 
         product = SharedData.PRODUCT_LIST.get(position);
 
@@ -95,15 +100,13 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             return;
         }
 
-        User user = SharedData.CURRENT_USER;
         int quantity = this.getProductQuantity();
-
         if (quantity < 1) {
             Toast.makeText(this, "Invalid quantity", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        user.getTransactions().add(new Transaction(product, quantity, new Date()));
+        currentUser.getTransactions().add(new Transaction(product, quantity, new Date()));
         Toast.makeText(this, "Successfully bought product", Toast.LENGTH_SHORT).show();
 
         this.finish();
