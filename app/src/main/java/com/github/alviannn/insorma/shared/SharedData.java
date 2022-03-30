@@ -1,5 +1,7 @@
 package com.github.alviannn.insorma.shared;
 
+import androidx.annotation.Nullable;
+
 import com.github.alviannn.insorma.R;
 import com.github.alviannn.insorma.models.Product;
 import com.github.alviannn.insorma.models.User;
@@ -27,18 +29,21 @@ public class SharedData {
 
     /**
      * Checks if a user exists, like... do they registered?
+     *
+     * @return a null if not exists, otherwise will be the user if they are registered
      */
-    public static boolean doesUserExists(String username, String email) {
+    @Nullable
+    public static User doesUserExists(String username, String email) {
         for (User user : USER_LIST) {
             boolean sameUsername = user.getUsername().equals(username);
             boolean sameEmail = user.getEmail().equals(email);
 
             if (sameUsername || sameEmail) {
-                return true;
+                return user;
             }
         }
 
-        return false;
+        return null;
     }
 
 }

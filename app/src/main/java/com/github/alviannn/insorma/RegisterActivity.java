@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 errorMessage =
                         "Password must be alphanumeric (has alphabet and number), " +
                         "and must be 8 characters or more";
-            } else if (SharedData.doesUserExists(email, username)) {
+            } else if (SharedData.doesUserExists(email, username) != null) {
                 errorMessage = "Email and username must be unique";
             }
 
