@@ -1,7 +1,6 @@
 package com.github.alviannn.insorma.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -23,11 +22,11 @@ import java.util.List;
 public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.ViewHolder> {
 
     private final List<Product> productList;
-    private final Activity activity;
+    private final Context context;
 
-    public ProductItemAdapter(List<Product> productList, Activity activity) {
+    public ProductItemAdapter(List<Product> productList, Context context) {
         this.productList = productList;
-        this.activity = activity;
+        this.context = context;
     }
 
     @NonNull
@@ -50,13 +49,10 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setText("Rating: " + product.getRating() + " / 5.0");
         holder.productDetailBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(activity, ProductDetailActivity.class);
-            String username = activity.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
-
-            intent.putExtra(SharedData.CURRENT_USERNAME_KEY, username);
+            Intent intent = new Intent(context, ProductDetailActivity.class);
             intent.putExtra(SharedData.PRODUCT_POSITION_KEY, position);
 
-            activity.startActivity(intent);
+            context.startActivity(intent);
         });
     }
 

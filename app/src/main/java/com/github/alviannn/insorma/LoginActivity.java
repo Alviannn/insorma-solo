@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,10 +60,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            SharedData.CURRENT_USER = foundUser;
             Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
 
-            User user = SharedData.USER_LIST.get(0);
-            Intent intent = new Intent(this, HomeActivity.class);
+            SharedData.CURRENT_USER = SharedData.USER_LIST.get(0);
 
-            intent.putExtra(SharedData.CURRENT_USERNAME_KEY, user.getUsername());
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         } else if (view == createAccountBtn) {
             Intent intent = new Intent(this, RegisterActivity.class);

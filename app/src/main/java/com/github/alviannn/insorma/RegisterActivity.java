@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (view == loginBtn) {
-            this.finish();
+            finish();
         } else if (view == createAccountBtn) {
             String email = emailField.getText().toString();
             String username = usernameField.getText().toString();
@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 errorMessage =
                         "Password must be alphanumeric (has alphabet and number), " +
                         "and must be 8 characters or more";
-            } else if (SharedData.findUser(email, username) != null) {
+            } else if (SharedData.doesUserExists(email, username) != null) {
                 errorMessage = "Email and username must be unique";
             }
 

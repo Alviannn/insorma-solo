@@ -22,10 +22,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history);
 
-        String username = this.getIntent().getStringExtra(SharedData.CURRENT_USERNAME_KEY);
-        User user = SharedData.findUser(username, null);
-        assert user != null;
-
+        User user = SharedData.CURRENT_USER;
         List<Transaction> transactions = user.getTransactions();
 
         RecyclerView transactionsRecycler = findViewById(R.id.recycler_transactions);
