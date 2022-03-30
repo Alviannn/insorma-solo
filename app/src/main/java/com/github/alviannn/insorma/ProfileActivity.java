@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         } else if (view == saveBtn) {
             String newUsername = usernameEdit.getText().toString();
 
-            User foundUser = SharedData.doesUserExists(newUsername, null);
+            User foundUser = SharedData.findUser(newUsername, null);
             if (foundUser != null && foundUser != user) {
                 Toast.makeText(
                         this,

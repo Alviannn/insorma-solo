@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.github.alviannn.insorma.models.User;
 import com.github.alviannn.insorma.shared.SharedData;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,30 +38,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == loginBtn) {
-//            String email = emailField.getText().toString();
-//            String password = passwordField.getText().toString();
-//
-//            if (email.isEmpty() || password.isEmpty()) {
-//                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT)
-//                        .show();
-//                return;
-//            }
-//
-//            User foundUser = this.findUser(email);
-//            if (foundUser == null) {
-//                Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//            if (!foundUser.getPassword().equals(password)) {
-//                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
-//                        .show();
-//                return;
-//            }
-//
-//            SharedData.CURRENT_USER = foundUser;
-            Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+            String email = emailField.getText().toString();
+            String password = passwordField.getText().toString();
 
-            SharedData.CURRENT_USER = SharedData.USER_LIST.get(0);
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+
+            User foundUser = SharedData.findUser(null, email);
+            if (foundUser == null) {
+                Toast.makeText(this, "Cannot find user", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!foundUser.getPassword().equals(password)) {
+                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+
+            SharedData.CURRENT_USER = foundUser;
+            Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
