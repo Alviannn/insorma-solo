@@ -35,19 +35,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         createAccountBtn.setOnClickListener(this);
     }
 
-    private boolean doesEmailOrUsernameExists(List<User> users, String email, String username) {
-        for (User user : users) {
-            boolean sameEmail = user.getEmail().equals(email);
-            boolean sameUsername = user.getUsername().equals(username);
-
-            if (sameEmail || sameUsername) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     @Override
     public void onClick(View view) {
         if (view == loginBtn) {
@@ -76,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 errorMessage =
                         "Password must be alphanumeric (has alphabet and number), " +
                         "and must be 8 characters or more";
-            } else if (this.doesEmailOrUsernameExists(users, email, username)) {
+            } else if (SharedData.doesUserExists(email, username)) {
                 errorMessage = "Email and username must be unique";
             }
 

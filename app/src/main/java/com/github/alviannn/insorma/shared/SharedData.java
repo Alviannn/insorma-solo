@@ -25,4 +25,20 @@ public class SharedData {
         PRODUCT_LIST.add(new Product(R.mipmap.sundvik, "SUNDVIK", 249, 4.0));
     }
 
+    /**
+     * Checks if a user exists, like... do they registered?
+     */
+    public static boolean doesUserExists(String username, String email) {
+        for (User user : USER_LIST) {
+            boolean sameUsername = user.getUsername().equals(username);
+            boolean sameEmail = user.getEmail().equals(email);
+
+            if (sameUsername || sameEmail) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

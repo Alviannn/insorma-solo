@@ -36,19 +36,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         createAccountBtn.setOnClickListener(this);
     }
 
-    @Nullable
-    private User findUser(String email) {
-        for (User user : SharedData.USER_LIST) {
-            boolean sameEmail = user.getEmail().equals(email);
-
-            if (sameEmail) {
-                return user;
-            }
-        }
-
-        return null;
-    }
-
     @Override
     public void onClick(View view) {
         if (view == loginBtn) {
