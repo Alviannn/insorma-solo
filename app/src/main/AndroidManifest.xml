@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InSOrma">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".TransactionHistoryActivity"
             android:exported="false" />
         <activity

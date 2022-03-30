@@ -26,4 +26,17 @@
     <string name="product_quantity_hint">PRODUCT_QUANTITY</string>
     <string name="product_purchase_date_hint">PURCHASE_DATE</string>
 
+    <string name="user_email_hint">USER_EMAIL</string>
+    <string name="user_username_hint">USER_USERNAME</string>
+    <string name="user_phone_hint">USER_PHONE</string>
+
+    <string name="email_address_label">Email address</string>
+    <string name="username_label">Username</string>
+    <string name="phone_number_label">Phone number</string>
+
+    <string name="logout_btn">Logout</string>
+    <string name="edit_profile_btn">Edit profile</string>
+    <string name="delete_account_btn">Delete Account</string>
+    <string name="save_change_btn">Save Change</string>
+
 </resources>

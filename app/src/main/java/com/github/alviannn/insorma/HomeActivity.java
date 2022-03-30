@@ -71,7 +71,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.profile_item:
-                Toast.makeText(this, "Profile page, it is", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
