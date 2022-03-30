@@ -61,6 +61,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             SharedData.CURRENT_USER = foundUser;
             Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
 
+            emailField.setText("");
+            passwordField.setText("");
+
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         } else if (view == createAccountBtn) {
