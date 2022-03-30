@@ -33,7 +33,7 @@ public class SharedData {
      * @return a null if not exists, otherwise will be the user if they are registered
      */
     @Nullable
-    public static User doesUserExists(String username, String email) {
+    public static User findUser(String username, String email) {
         for (User user : USER_LIST) {
             boolean sameUsername = user.getUsername().equals(username);
             boolean sameEmail = user.getEmail().equals(email);
