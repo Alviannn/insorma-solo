@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.alviannn.insorma.ProductDetailActivity;
@@ -48,7 +49,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.productName.setText(product.getName());
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setText("Rating: " + product.getRating() + " / 5.0");
-        holder.productDetailBtn.setOnClickListener(view -> {
+        holder.productDetailItem.setOnClickListener(view -> {
             Intent intent = new Intent(context, ProductDetailActivity.class);
             intent.putExtra(SharedData.PRODUCT_POSITION_KEY, position);
 
@@ -65,7 +66,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
 
         private final ImageView productImage;
         private final TextView productName, productRating, productPrice;
-        private final TextView productDetailBtn;
+        private final ConstraintLayout productDetailItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +77,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             productRating = itemView.findViewById(R.id.product_rating);
             productPrice = itemView.findViewById(R.id.product_price);
 
-            productDetailBtn = itemView.findViewById(R.id.product_detail_btn);
+            productDetailItem = itemView.findViewById(R.id.product_detail_item);
         }
 
     }
