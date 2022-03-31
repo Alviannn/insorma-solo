@@ -45,13 +45,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String phone = phoneField.getText().toString();
             String password = passwordField.getText().toString();
 
-            String errorMessage = "";
-
             boolean emailValid = email.matches("^[a-zA-Z\\d._-]{3,}@[a-zA-Z\\d._-]{3,}\\.com$");
             boolean usernameValid = username.matches("^.{3,20}$");
-            boolean passwordValid = password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).+${8,}");
+
+            boolean passwordHasChar = password.matches("[a-zA-Z]+");
+            boolean passwordHasNum = password.matches("[0-9]+");
+            boolean passwordValid = password.length() >= 8 && passwordHasChar && passwordHasNum;
 
             List<User> users = SharedData.USER_LIST;
+            String errorMessage = "";
 
             if (email.isEmpty() || username.isEmpty() || phone.isEmpty() || password.isEmpty()) {
                 errorMessage = "All fields must be filled";
